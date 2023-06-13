@@ -8,7 +8,7 @@ import Editable from "../Editabled/Editable";
 import "./Board.css";
 
 function Board(props) {
-  const{ cards,id, title}=props.board;
+  //const{ cards,id, title}=props.board;
   // console.log(props.board)
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -99,6 +99,10 @@ function Board(props) {
             dragEntered={props.dragEntered}
             dragEnded={props.dragEnded}
             updateCard={props.updateCard}
+            onChange={(event) => {
+              event.stopPropagation();
+              
+            }}
           />
         ))}
         <Editable
