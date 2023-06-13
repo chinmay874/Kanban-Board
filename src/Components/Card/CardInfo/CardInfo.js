@@ -22,7 +22,10 @@ function CardInfo(props) {
     ...props.card,
   });
 
+  
+
   const updateTitle = (value) => {
+    
     setValues({ ...values, title: value });
   };
 
@@ -138,6 +141,14 @@ function CardInfo(props) {
               addLabel({ color: selectedColor, text: value })
             }
           />
+        </div>
+        <div className="activity">
+          <h3>Activity</h3>
+            {
+              values?.activity?.map((item)=>
+                  <p>{item}</p>
+              )
+            }
         </div>
       </div>
     </Modal>

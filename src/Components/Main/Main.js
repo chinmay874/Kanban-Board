@@ -64,30 +64,31 @@ function Main() {
     setBoards(tempBoards);
   };
   // //lets try for board drag by chinmay
-  // const boardDragEnded =(bid)=>{
-  //   let s_boardIndex,t_boardIndex;
-  //     s_boardIndex=boards.findIndex((item)=> item.id===bid);
-  //     t_boardIndex=boards.findIndex((item)=> item.id===targetCard.bid);
-  //     const tempBoards=[...boards];
-  // const sourceBoard=tempBoards[s_boardIndex];
-  // tempBoards.splice(s_boardIndex,1);
-  // tempBoards.splice(t_boardIndex,0,sourceBoard);
-  // setBoards(tempBoards);
+  const boardDragEnded =(bid)=>{
+    let s_boardIndex,t_boardIndex;
+      s_boardIndex=boards.findIndex((item)=> item.id===bid);
+      t_boardIndex=boards.findIndex((item)=> item.id===targetCard.bid);
+      const tempBoards=[...boards];
+  const sourceBoard=tempBoards[s_boardIndex];
+  tempBoards.splice(s_boardIndex,1);
+  tempBoards.splice(t_boardIndex,0,sourceBoard);
+  setBoards(tempBoards);
 
-  // setTargetCard({
-  //   bid: "",
-  //   cid: "",
-  // });
-  // console.log("this is dragended")
-  // }
+  setTargetCard({
+    bid: "",
+    cid: "",
+  });
+  //console.log("this is dragended")
+  }
 
-  // const boardDragEntered=(bid)=>{
-  //   if (targetCard.bid === bid) return;
-  //   setTargetCard({
-  //     bid,
-  //   });
-  // console.log("hi, Chinmay here")
-  // }
+  const boardDragEntered=(bid,cid)=>{
+    if (targetCard.bid === bid) return;
+    setTargetCard({
+      bid,
+      cid,
+    });
+  //console.log("hi, Chinmay here")
+  }
 
   /////////
 
@@ -113,13 +114,15 @@ function Main() {
     const sourceCard = tempBoards[s_boardIndex].cards[s_cardIndex];
     tempBoards[s_boardIndex].cards.splice(s_cardIndex, 1);
     tempBoards[t_boardIndex].cards.splice(t_cardIndex, 0, sourceCard);
+    tempBoards[t_boardIndex].cards[t_cardIndex].activity.push(`${tempBoards[t_boardIndex].cards[t_cardIndex].title} is moved from ${tempBoards[s_boardIndex].title} to ${tempBoards[t_boardIndex].title} `)
+    
     setBoards(tempBoards);
 
     setTargetCard({
       bid: "",
       cid: "",
     });
-    console.log("Chinmay");
+    //console.log("Chinmay");
   };
 
   const dragEntered = (bid, cid) => {
@@ -128,7 +131,7 @@ function Main() {
       bid,
       cid,
     });
-    console.log("hi");
+    // console.log("hi");
   };
 
   const updateCard = (bid, cid, card) => {
@@ -193,8 +196,8 @@ function Main() {
               addCard={addCardHandler}
               removeBoard={() => removeBoard(item.id)}
               removeCard={removeCard}
-              // boardDragEnded={boardDragEnded}
-              // boardDragEntered={boardDragEntered}
+               boardDragEnded={boardDragEnded}
+               boardDragEntered={boardDragEntered}
               dragEnded={dragEnded}
               dragEntered={dragEntered}
               updateCard={updateCard}

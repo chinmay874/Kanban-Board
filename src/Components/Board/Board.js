@@ -8,7 +8,7 @@ import Editable from "../Editabled/Editable";
 import "./Board.css";
 
 function Board(props) {
-  // const{ cards,id, title}=props.board;
+  const{ cards,id, title}=props.board;
   // console.log(props.board)
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -51,13 +51,12 @@ function Board(props) {
     SetEdit(true);
   }
   return (
-    // <div
-    //     className="board"
-    //     draggable
-    //     onDragEnd={()=>props.boardDragEnded(props.board.id)}
-    //     onDragEnter={()=> props.boardDragEntered(props.board.id)}
-    //   >
-    <div className="board">
+    <div 
+    draggable
+    onDragEnd={()=>props.boardDragEnded(props.board.id)}
+    onDragEnter={()=> props.boardDragEntered(props.board.id)}
+  >
+    <div className="board"> 
       <div className="board_header">
         <div className="board_header_title">
           {edit ? (
@@ -111,7 +110,7 @@ function Board(props) {
         />
       </div>
     </div>
-    // </div>
+    </div>
   );
 }
 
